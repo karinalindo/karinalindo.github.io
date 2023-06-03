@@ -508,7 +508,7 @@ function windowLoadInit() {
 			Host: "smtp.elasticemail.com",
 			Username: "karina.lindo.web@gmail.com",
 			Password: "6567B85D86D8634B9F6245BD7A46795B01D7",
-			To: 'karina.lindo.web@gmail.com',
+			To: 'karina.lindo.web@gmail.com, gastelu.n.ivan@gmail.com',
 			From: "karina.lindo.web@gmail.com",
 			Subject: "MENSAJE DE LA WEB",
 			Body: `EMAIL: ${$form.email}<br> 
