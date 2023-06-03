@@ -501,20 +501,35 @@ function windowLoadInit() {
 			return;
 		}
 
-		//sending form data to PHP server if fields are not empty
 		var request = $form.serialize();
-		var ajax = jQuery.post( "contact-form.php", request )
-		.done(function( data ) {
-			jQuery($form).find('[type="submit"]').attr('disabled', false).parent().append('<span class="contact-form-respond highlight">'+data+'</span>');
-			//cleaning form
-			var $formErrors = $form.find('.form-errors');
-			if ( !$formErrors.length ) {
-				$form[0].reset();
-			}
-		})
-		.fail(function( data ) {
-			jQuery($form).find('[type="submit"]').attr('disabled', false).parent().append('<span class="contact-form-respond highlight">Mail cannot be sent. You need PHP server to send mail.</span>');
-		})
+
+
+		Email.send({
+			Host: "smtp.elasticemail.com",
+			Username: "karina.lindo.web@gmail.com",
+			Password: "6567B85D86D8634B9F6245BD7A46795B01D7",
+			To: 'karina.lindo.web@gmail.com',
+			From: "karina.lindo.web@gmail.com",
+			Subject: "MENSAJE DE LA WEB",
+			Body: `EMAIL: ${$form.email}<br> 
+				  Nombres y Apellidos: ${$form.name} <br> 
+				  Fecha: ${new Date().toLocaleString()} <br>
+				  Respuestas: ${$form.message}<br>
+				  ${request}`
+		  }).then(message => console.log(message));
+
+		// var ajax = jQuery.post( "contact-form.php", request )
+		// .done(function( data ) {
+		// 	jQuery($form).find('[type="submit"]').attr('disabled', false).parent().append('<span class="contact-form-respond highlight">'+data+'</span>');
+		// 	//cleaning form
+		// 	var $formErrors = $form.find('.form-errors');
+		// 	if ( !$formErrors.length ) {
+		// 		$form[0].reset();
+		// 	}
+		// })
+		// .fail(function( data ) {
+		// 	jQuery($form).find('[type="submit"]').attr('disabled', false).parent().append('<span class="contact-form-respond highlight">Mail cannot be sent. You need PHP server to send mail.</span>');
+		// })
 	});
 
 
